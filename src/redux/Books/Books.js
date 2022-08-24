@@ -1,7 +1,7 @@
 import React from "react";
 
-const ADD_BOOK = 'ADD_BOOK';
-const REMOVE_BOOK = 'REMOVE_BOOK';
+const ADD_BOOK = 'bookstore/Books/ADD_BOOK';
+const REMOVE_BOOK = 'bookstore/Books/REMOVE_BOOK';
 
 const bookReducer = (books = [], action ) => {
     switch (action.type){
