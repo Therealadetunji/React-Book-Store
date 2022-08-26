@@ -1,19 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBooks } from '../redux/Books/Books';
+import { deleteBook, removeBooks } from '../redux/Books/Books';
 
-function ListOfBooks({ title, author, id }) {
+const  ListOfBooks = (props) => {
+  const {
+    id, title,author,category
+  } = props;
   const dispatch = useDispatch();
+
+  const removeHandler = () =>{
+    dispatch(deleteBook());
+  };
+
   return (
     <li>
+      
       {title}
       {' '}
       by
       {' '}
       {author}
       {' '}
-      <button type="button" id={id} className='remove button' onClick={(e) => {dispatch(removeBooks(e.target.id));}}>Remove</button>
+      {category}
+      <button type="button"   className='remove button' onClick={removeHandler}>Remove</button>
     </li>
   );
 }
