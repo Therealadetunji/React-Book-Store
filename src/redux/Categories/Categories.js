@@ -1,19 +1,17 @@
-import React from "react";
+// define constant
+const CHECK_STATUS = 'bookstore/categories/CHECK_STATUS';
 
+const categories = [];
+export const categoriesReducer = (state = categories, action) => {
+  switch (action.type) {
+    case CHECK_STATUS:
+      return 'Under construction';
+    default:
+      return state;
+  }
+};
 
-const categoriesReducer = (state = 'initial state', action) => {
-        switch (action.type){
-            case 'check_status':
-                return 'nothing yet';
-            default:
-                return state;
-        }
-}
+export const checkBookStatus = () => ({
+  type: CHECK_STATUS,
 
-export const addCategories = () => {
-    return {
-        type: 'check_status',
-    }
-}
-
-export default categoriesReducer;
+});

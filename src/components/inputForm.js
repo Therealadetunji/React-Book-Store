@@ -1,37 +1,34 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import  { addBooks, postBook } from "../redux/Books/Books";
+import  { newBookFetch, postBook } from "../redux/Books/Books";
 import { v4 as  uuidv4 } from 'uuid';
-import { generate } from "randomstring";
 
 const Form = () => {
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [category, setCategory] = useState('');
-
+   
 
     const newBooks = (e) => {
         e.preventDefault();
-         const bookInfo = {item_id: generate(), title, author, category};
-         dispatch(postBook(bookInfo));
+         const bookInfo = { item_id: uuidv4(),title: title, author: author, category:'TUNJI'};
+         console.log(bookInfo);
+        dispatch(newBookFetch(bookInfo));
 
-         setTitle('');
-         setAuthor('');
-         setCategory('')
+        setTitle('')
+        setAuthor('')
     }
-
 
     <h2 className="add a new book">
         ADD NEW BOOK
     </h2>
     return (
-    <form  className="form" >
+    <form action="#" className="form">
         <input type="text"  className="title" value={title} placeholder="title" onChange={(e) => setTitle(e.target.value)} ></input>
         <input type="text"  className="author" value={author} placeholder="author" onChange={(e) => setAuthor(e.target.value)} ></input>
-        <button type="submit" value="submit" className="button" onClick={newBooks} >ADD BOOK</button>
+        <button type="submit" value="submit" className="button" onClick={newBooks}>ADD BOOK</button>
     </form>
     )
 };
