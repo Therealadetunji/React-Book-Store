@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import  { addBooks, postBook } from "../redux/Books/Books";
 import { v4 as  uuidv4 } from 'uuid';
+import { generate } from "randomstring";
 
 const Form = () => {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const Form = () => {
 
     const newBooks = (e) => {
         e.preventDefault();
-         const bookInfo = {item_id: uuidv4(), title, author, category};
+         const bookInfo = {item_id: generate(), title, author, category};
          dispatch(postBook(bookInfo));
 
          setTitle('');

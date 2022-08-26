@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { type } from "@testing-library/user-event/dist/type";
+import { generate } from "randomstring";
 import React from "react";
 import { v4 as uuid } from 'uuid';
 
@@ -15,12 +16,12 @@ const initialState = {
     books: [{
         title: 'Dancing man',
         author: 'J-hus',
-        id: uuid()
+        id: generate()
     },
     {
         title: 'Last Last',
         author: 'burna-boy',
-        id: uuid()
+        id: generate()
     }],
     loading: false,
     error: null,

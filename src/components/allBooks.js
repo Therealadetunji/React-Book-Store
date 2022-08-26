@@ -16,7 +16,9 @@ useEffect(() => {
       <div>
       <ul>
         {books.map((book) => (
-         <ListOfBooks key={book.id} title={book.title} author={book.author} id={book.id} category={book.category}/>
+          <li key={book.item_id}>
+         <ListOfBooks  title={book.title} author={book.author} item_id={book.item_id} category={book.category}/>
+        </li>
         ))}
       </ul>
       <Form/>
