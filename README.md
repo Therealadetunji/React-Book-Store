@@ -1,26 +1,20 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+Book Store
 
 > Description the project.
 
+        An App in which a user inputs a book title and Author and it is displayed.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Javscript
+- Frameworks - React
+- Technologies used - CSS
 
 ## Live Demo (if available)
 
 [Live Demo Link](https://livedemo.com)
-
-
-## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
 
 To get a local copy up and running follow these simple example steps.
 
@@ -28,7 +22,14 @@ To get a local copy up and running follow these simple example steps.
 
 ### Setup
 
+1. Have Vsc code installed.
+2. Node package
+
 ### Install
+
+1.Go to githubpage : https://github.com/Therealadetunji/React-Book-Store
+2.Click on code and Clone repository.
+and Open in Editor.
 
 ### Usage
 
@@ -36,23 +37,13 @@ To get a local copy up and running follow these simple example steps.
 
 ### Deployment
 
-
-
 ## Authors
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-## 🤝 Contributing
+- GitHub: [@therealadetunji](https://github.com/Therealadetunji)
+- Twitter: [@madetunji1376](https://twitter.com/madetunji1376)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/michael-adetunji-278767206/)
 
 Contributions, issues, and feature requests are welcome!
 
@@ -61,12 +52,6 @@ Feel free to check the [issues page](../../issues/).
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
