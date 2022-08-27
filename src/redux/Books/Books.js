@@ -1,45 +1,52 @@
-import React from "react";
-import { v4 as uuid } from 'uuid';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const ADD_BOOK = 'bookstore/Books/ADD_BOOK';
-const REMOVE_BOOK = 'bookstore/Books/REMOVE_BOOK';
+const apiKey = 'iAvUGT7MFjCTmOa9BWeU';
 
-const bookReducer = (books = [{
-    title: 'Dancing man',
-    author: 'J-hus',
-    id: uuid()
-},
-{
-    title: 'Last Last',
-    author: 'burna-boy',
-    id: uuid()
-}
-], action ) => {
-    switch (action.type){
-        case ADD_BOOK:
-            return [
-                ...books, action.books
-            ];
-        case REMOVE_BOOK:
-            return [...books.filter ((book) => book.id !== action.books)];
+const apiEndPoint = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
 
-        default:
-            return books;
-    }
-};
+export const fetchBooks = createAsyncThunk(
+  'fetchBook',
+  async () => {
+    const response = await axios.get(`${apiEndPoint}/${apiKey}/books`);
+    return response.data;
+  },
+);
 
-export const addBooks = (books) => {
-    return {
-        type: ADD_BOOK,
-        books,
-    }
-};
+export const postBook = createAsyncThunk('postBook', async (book) => {
+  const response = await axios.post(`${apiEndPoint}/${apiKey}/books`, {
+    item_id: book.item_id,
+    title: book.title,
+    author: book.author,
+    category: book.category,
+  });
+  return response.data;
+});
 
-export const removeBooks = (books) => {
-    return {
-        type: REMOVE_BOOK,
-        books,
-    }
-};
+export const removeBook = createAsyncThunk('removeBook', async (id) => {
+  const response = await axios.delete(`${apiEndPoint}/${apiKey}/books/${id}`);
+  return response.data;
+});
 
-export default bookReducer;
+const initialState = [];
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  extraReducers: {
+    [fetchBooks.fulfilled]: (state, action) => {
+      window.console.log(`api data ${action.payload}, ${state.books}`);
+      const books = Object.keys(action.payload)
+        .map((instance) => ({
+          item_id: instance,
+          completed: Math.floor(Math.random() * 100),
+          currentLesson: `Chapter ${Math.floor(Math.random() * 15)}`,
+          ...action.payload[instance][0],
+        }));
+      return [books];
+    },
+    [postBook.fulfilled]: (state, action) => [...state, action.payload],
+    [removeBook.fulfilled]: (state, action) => [...state.filter((book) => book.item_id !== action.payload.item_id)],
+
+  },
+});
+export default booksSlice.reducer;

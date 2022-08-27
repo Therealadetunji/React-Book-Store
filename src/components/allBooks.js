@@ -1,22 +1,30 @@
-import React from 'react';
-import ListOfBooks from './eachBook'
-import Form from './inputForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchBooks } from '../redux/Books/Books';
+import '../App.css';
+import Book from './eachBook';
+import Navigation from './Navbar';
 
 const Books = () => {
   const books = useSelector((state) => state.books);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, [books.length]);
 
-
-
-  return (
-    <div>
+  if (books.length) {
+    return (
       <ul>
-        {books.map((book) => (
-          <ListOfBooks key={book.id} title={book.title} author={book.author} id={book.id}/>
-        ))}
+        {books[0].map((book) => <Book key={book.item_id} book={book} />)}
+        <Navigation />
       </ul>
-      <Form/>
-    </div>
+    );
+  }
+  return (
+    <>
+      <h1>Loading...</h1>
+    </>
   );
 };
+
 export default Books;
