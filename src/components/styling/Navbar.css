@@ -1,0 +1,54 @@
+nav {
+  padding: 20px 5%;
+  box-shadow: 0 0 20px rgba(7, 7, 7, 0.5);
+  background: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.flex-left {
+  flex: 1;
+  color: #0290ff;
+  font-weight: bold;
+  font-size: 35px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 40rem;
+  color: #9e9ea7;
+  list-style: none;
+  font-size: 18px;
+  gap: 3rem;
+}
+
+.login {
+  display: flex;
+  align-self: flex-end;
+}
+
+.login img {
+  width: 80px;
+  height: 60px;
+}
+
+@media (max-width: 375px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .login {
+    justify-self: flex-start;
+  }
+}
