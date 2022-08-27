@@ -1,56 +1,52 @@
-/* eslint-disable */
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-// define constant
-const ADD_BOOK = 'bookstore/books/ADD_BOOK';
-const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
-const getBook = 'bookstore/books/getBook';
-const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/iAvUGT7MFjCTmOa9BWeU/books/'
-export const fetchBooks = () => async (dispatch) => {
-  const booksFetch = await fetch(URL, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-    },
-  }).then((data) => data.json());
+const apiKey = 'iAvUGT7MFjCTmOa9BWeU';
 
-  const books = [];
-  Object.keys(booksFetch).forEach((e) => {
-    books.push({ ...booksFetch[e][0], item_id: e });
+const apiEndPoint = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
+
+export const fetchBooks = createAsyncThunk(
+  'fetchBook',
+  async () => {
+    const response = await axios.get(`${apiEndPoint}/${apiKey}/books`);
+    return response.data;
+  },
+);
+
+export const postBook = createAsyncThunk('postBook', async (book) => {
+  const response = await axios.post(`${apiEndPoint}/${apiKey}/books`, {
+    item_id: book.item_id,
+    title: book.title,
+    author: book.author,
+    category: book.category,
   });
-  dispatch({
-    type: getBook,
-    payload: books,
-  });
-};
-// add new book
-export const newBookFetch = (book) => async (dispatch) => {
-  await fetch(URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(book),
-  }).then(() => dispatch(fetchBooks()));  
-};
-export const deleteBookFetch = (item_id) => async (dispatch) => {
-  await fetch(`${URL}${item_id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({item_id}),
-  }).then(() => dispatch(fetchBooks()))
-};
+  return response.data;
+});
+
+export const removeBook = createAsyncThunk('removeBook', async (id) => {
+  const response = await axios.delete(`${apiEndPoint}/${apiKey}/books/${id}`);
+  return response.data;
+});
+
 const initialState = [];
-export const bookReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK:
-      return [
-        ...state, action.book,
-      ];
-    case REMOVE_BOOK:
-      return state.filter((book) => book.id !== action.item_id);
-    case getBook:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  extraReducers: {
+    [fetchBooks.fulfilled]: (state, action) => {
+      window.console.log(`api data ${action.payload}, ${state.books}`);
+      const books = Object.keys(action.payload)
+        .map((instance) => ({
+          item_id: instance,
+          completed: Math.floor(Math.random() * 100),
+          currentLesson: `Chapter ${Math.floor(Math.random() * 15)}`,
+          ...action.payload[instance][0],
+        }));
+      return [books];
+    },
+    [postBook.fulfilled]: (state, action) => [...state, action.payload],
+    [removeBook.fulfilled]: (state, action) => [...state.filter((book) => book.item_id !== action.payload.item_id)],
+
+  },
+});
+export default booksSlice.reducer;

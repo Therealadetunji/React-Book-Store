@@ -1,17 +1,20 @@
-// define constant
-const CHECK_STATUS = 'bookstore/categories/CHECK_STATUS';
+import { createSlice } from '@reduxjs/toolkit';
 
-const categories = [];
-export const categoriesReducer = (state = categories, action) => {
-  switch (action.type) {
-    case CHECK_STATUS:
-      return 'Under construction';
-    default:
-      return state;
-  }
+const CHECK_STATUS = 'CHECK_STATUS';
+const initialState = {
+  status: null,
 };
 
-export const checkBookStatus = () => ({
-  type: CHECK_STATUS,
+const categoriesSlice = createSlice({
+  name: 'categories',
+  initialState,
+  reducers: {
+    checkStatus: () => ({
+      status: 'Under Construction!!!',
+    }
+    ),
 
+  },
 });
+export const { checkStatus } = categoriesSlice.actions;
+export default categoriesSlice.reducer;

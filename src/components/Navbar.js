@@ -1,20 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import React from 'react';
+// import './styles/Nav.css';
+// import login from '../images/login.png';
 
-const Navigation = () => (
-    <div className="navigation">
-        <nav className="navbar">
-        <Link to="/">
-        <h1 className="Bookstore">Bookstore</h1>
+const Navigation = () => {
+  const navStyle = {
+    color: '#9e9ea7',
+    textDecoration: 'none',
+    cursor: 'pointer',
+  };
+  return (
+    <nav>
+      <Link to="/" style={navStyle}>
+        <h1 className="flex-left">BookStore</h1>
+      </Link>
+      <ul className="nav-links">
+        <Link style={navStyle} to="/books">
+          <li>Books</li>
         </Link>
-        <Link to="Books" className="book-click">Books</Link>
-        <Link to="Categories" className="cat-click">Categories</Link>
+        <Link to="/categories" style={navStyle}>
+          <li>Categories</li>
+        </Link>
+      </ul>
+      <div className="login">
+        {/* <Link to="/" style={navStyle}>
+          <img src={login} alt="Book. logo" />
+        </Link> */}
+      </div>
     </nav>
-    <div>
-        photograph icon
-    </div>
-    </div>
-    
-)
+  );
+};
 
 export default Navigation;
