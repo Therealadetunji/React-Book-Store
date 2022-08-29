@@ -2,6 +2,7 @@ import './styling/eachBook.css'
 import { useDispatch } from 'react-redux';
 import { Progress } from 'antd';
 import { removeBook } from '../redux/Books/Books';
+import Form from './inputForm';
 
 const Book = ({ book }) => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ const Book = ({ book }) => {
           <button type="button" className="update-progress-btn">Update Progress</button>
         </div>
       </li>
-      <div />
+      <Form/>
     </>
   );
 };
