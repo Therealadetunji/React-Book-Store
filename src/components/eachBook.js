@@ -1,7 +1,8 @@
-// import './styles/Book.css';
+import './styling/eachBook.css'
 import { useDispatch } from 'react-redux';
-// import { Progress } from 'antd';
+import { Progress } from 'antd';
 import { removeBook } from '../redux/Books/Books';
+import Form from './inputForm';
 
 const Book = ({ book }) => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const Book = ({ book }) => {
         </div>
         <div className="completed">
           <span className="oval circular-chart">
-            {/* <Progress
+            <Progress
               type="circle"
               width={80}
               format={() => ''}
@@ -51,8 +52,7 @@ const Book = ({ book }) => {
               }}
               trailColor="#e8e8e8"
               percent={book.completed}
-            /> */}
-
+            />
           </span>
 
           <div className="percent">
@@ -66,7 +66,7 @@ const Book = ({ book }) => {
           <button type="button" className="update-progress-btn">Update Progress</button>
         </div>
       </li>
-      <div />
+      <Form/>
     </>
   );
 };

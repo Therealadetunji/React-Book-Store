@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { fetchBooks } from '../redux/Books/Books';
 import '../App.css';
 import Book from './eachBook';
-import Navigation from './Navbar';
+import Form from './inputForm';
 
 const Books = () => {
   const books = useSelector((state) => state.books);
@@ -16,7 +16,6 @@ const Books = () => {
     return (
       <ul>
         {books[0].map((book) => <Book key={book.item_id} book={book} />)}
-        <Navigation />
       </ul>
     );
   }

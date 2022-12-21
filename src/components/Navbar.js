@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-// import './styles/Nav.css';
-// import login from '../images/login.png';
+import './styling/Navbar.css';
+import login from '../profile-image/login.png';
 
 const Navigation = () => {
   const navStyle = {
@@ -12,7 +12,7 @@ const Navigation = () => {
   return (
     <nav>
       <Link to="/" style={navStyle}>
-        <h1 className="flex-left">BookStore</h1>
+        <h1 className="flex-left">BookStore CMS</h1>
       </Link>
       <ul className="nav-links">
         <Link style={navStyle} to="/books">
@@ -23,12 +23,13 @@ const Navigation = () => {
         </Link>
       </ul>
       <div className="login">
-        {/* <Link to="/" style={navStyle}>
+        <Link to="/" style={navStyle}>
           <img src={login} alt="Book. logo" />
-        </Link> */}
+        </Link>
       </div>
     </nav>
   );
+  
 };
 
 export default Navigation;

@@ -9,8 +9,6 @@ import Books  from './components/allBooks';
 const App = () => (
   <>
   <Navigation/>
-  
-
   <Routes>
     <Route path="/" element={<Books/>} />
     <Route path="/Books" element={<Books/>} />

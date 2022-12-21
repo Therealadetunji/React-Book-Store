@@ -1,9 +1,9 @@
 /* eslint-disable implicit-arrow-linebreak */
 import React from 'react';
-import './styles/Form.css';
+import './styling/inputForm.css'
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { postBook } from '../redux/books/books';
+import { postBook } from '../redux/Books/Books';
 
 const Form = () => {
   const dispatch = useDispatch();
